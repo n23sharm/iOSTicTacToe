@@ -72,26 +72,24 @@ class GameBoard {
         
         // check left-right diagonal
         player = board[0][0];
-        for row in 0..<boardSize {
-            for column in 0..<boardSize {
-                if (board[row][column] != player) {
-                    player = Player.EMPTY;
-                    break;
-                }
-            }
-            if (player != Player.EMPTY) {
-                return player;
+        for var row = 0, column = 0; row < boardSize && column < boardSize; ++row, ++column {
+            if (board[row][column] != player) {
+                player = Player.EMPTY;
+                break;
             }
         }
+        if (player != Player.EMPTY) {
+            return player;
+        }
+    
+        
         
         // check right-left diagonal
         player = board[boardSize - 1][0];
-        for row in reverse(0..<boardSize) {
-            for column in 0..<boardSize {
-                if (board[row][column] != player) {
-                    player = Player.EMPTY;
-                    break;
-                }
+        for var row = boardSize-1, column = 0; row >= 0 && column < boardSize; --row, ++column {
+            if (board[row][column] != player) {
+                player = Player.EMPTY;
+                break;
             }
         }
         return player;
